@@ -1,6 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Container } from "./styles";
 
-export const Card: React.FC = () => {
-  return <Container></Container>;
+type CardProps = {
+  children: ReactNode;
+};
+
+export const Card: React.FC<CardProps> = ({ children }) => {
+  return <Container>{children}</Container>;
 };
