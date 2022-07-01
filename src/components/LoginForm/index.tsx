@@ -1,16 +1,20 @@
 import React from "react";
-import { Container } from "./styles";
+import { Button, Container, FormControl, Input } from "./styles";
 
 export const LoginForm: React.FC = () => {
   return (
     <Container>
-      <div>
+      <FormControl>
         <label htmlFor="email">E-mail</label>
-        <input type="text" id="email" />
-      </div>
-      <div>
-        <input type="password" placeholder="Senha" />
-      </div>
+        <Input type="text" id="email" placeholder="@gmail.com" />
+      </FormControl>
+
+      <FormControl>
+        <label htmlFor="password">Password</label>
+        <Input type="password" placeholder="****************" />
+      </FormControl>
+
+      <Button type="submit">Sign In</Button>
     </Container>
   );
 };
