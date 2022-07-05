@@ -8,23 +8,6 @@ export const Form = styled.form`
   gap: 1.75rem;
 `;
 
-export const FormControl = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  gap: 0.75rem;
-  text-align: start;
-
-  input {
-    background-color: #f1f1f1;
-    border-radius: 0.5rem;
-    font-family: inherit;
-    font-size: 1rem;
-    padding: 1rem;
-    border: 0;
-    width: 100%;
-  }
-`;
-
 export const ErrorBox = styled.div`
   color: red;
   font-size: small;

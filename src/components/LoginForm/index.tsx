@@ -2,7 +2,8 @@ import axios, { AxiosError } from "axios";
 import { Formik, ErrorMessage, Field } from "formik";
 import React from "react";
 import toast from "react-hot-toast";
-import { Button, ErrorBox, Form, FormControl } from "./styles";
+import FormControl from "../FormControl";
+import { Button, ErrorBox, Form } from "./styles";
 
 type Values = {
   email: string;

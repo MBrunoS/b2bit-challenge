@@ -1,14 +1,33 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 
-const [token, setToken] = useState(localStorage.getItem("auth-token"));
+type AuthContextType = {
+  token: string | null;
+  setToken: (token: string) => void;
+};
 
-export const AuthContext = React.createContext({ token, setToken });
+const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
+
+export const useAuthContext = () => {
+  let context = React.useContext(AuthContext);
+
+  if (context === undefined) {
+    throw new Error("Must use it inside AuthContextProvider");
+  }
+  return context;
+};
 
 type AuthContextProviderProps = {
   children: ReactNode;
 };
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
+  // const token = localStorage.getItem("auth-token");
+  const token = "";
+
+  const setToken = (token: string) => {
+    localStorage.setItem("auth-token", token);
+  };
+
   return (
     <AuthContext.Provider value={{ token, setToken }}>
       {children}

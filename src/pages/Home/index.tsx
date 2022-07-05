@@ -1,21 +1,25 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 import { Card } from "../../components/Card";
 import { LoginForm } from "../../components/LoginForm";
-import { Container } from "./styles";
+import { Img } from "./styles";
 import logo from "../../assets/b2bit_logo.svg";
-import { AuthContext } from "../../context/AuthContext";
 
 export const Home: React.FC = () => {
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthContext();
+  const navigate = useNavigate();
 
-  console.log({ token });
+  useEffect(() => {
+    if (token !== null) {
+      navigate("/profile");
+    }
+  }, []);
 
   return (
-    <Container>
-      <Card>
-        <img src={logo} />
-        <LoginForm />
-      </Card>
-    </Container>
+    <Card shadowSize="lg">
+      <Img src={logo} />
+      <LoginForm />
+    </Card>
   );
 };
