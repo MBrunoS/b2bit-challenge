@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-flow: column wrap;
   font-size: 1.25rem;
@@ -34,4 +34,5 @@ export const Button = styled.button`
   font-size: 1rem;
   font-weight: 500;
   padding: 1rem;
+  cursor: pointer;
 `;
