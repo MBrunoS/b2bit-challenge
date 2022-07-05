@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
@@ -11,6 +12,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
       </Routes>
       <GlobalStyle />
+      <Toaster />
     </Router>
   );
 }
