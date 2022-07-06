@@ -6,12 +6,12 @@ This project was developed to solve the challenge proposed by B2BIT
 
 - Vite
 - React
-- Styled Components
+- styled-components
 - Typescript
 
 ## How to run
 
-Assuming the code is already downloaded on your computer, inside the project folder run the following command:
+Assuming you already downloaded the code, inside the project folder run the following command:
 
 ```
 yarn

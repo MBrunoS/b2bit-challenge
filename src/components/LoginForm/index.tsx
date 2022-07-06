@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
+import { Button } from "../Button";
 import { ErrorBox, Form, FormControl } from "./styles";
 
 type Values = {
@@ -14,7 +15,7 @@ type Values = {
 type ApiError = { detail: string };
 
 export const LoginForm: React.FC = () => {
-  const { token, setToken } = useAuthContext();
+  const { token, setToken, setTokenRefresh } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export const LoginForm: React.FC = () => {
             }
           );
           setToken(data.tokens.access);
+          setTokenRefresh(data.tokens.refresh);
         } catch (error) {
           if (axios.isAxiosError(error)) {
             const msg = (error as AxiosError).response?.data as ApiError;
@@ -101,9 +103,9 @@ export const LoginForm: React.FC = () => {
             )}{" "}
           </FormControl>
 
-          <button type="submit" disabled={formik.isSubmitting}>
+          <Button type="submit" disabled={formik.isSubmitting}>
             Sign In
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

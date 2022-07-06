@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 import Avatar from "../../components/Avatar";
 import { Card } from "../../components/Card";
 import { FormControl } from "../../components/LoginForm/styles";
@@ -23,7 +24,7 @@ type APiProfile = {
 type ApiError = { detail: string };
 
 export const Profile: React.FC = () => {
-  const { token, revokeToken } = useAuthContext();
+  const { token, tokenRefresh, revokeToken } = useAuthContext();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
@@ -31,7 +32,17 @@ export const Profile: React.FC = () => {
 
   useEffect(() => {
     if (token === null) {
+      toast.error("Your session expired. Please, login again.");
       navigate("/");
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const decoded = jwt_decode<JwtPayload>(tokenRefresh as string);
+    const expirationDate = Number(decoded.exp) * 1000;
+
+    if (expirationDate < Date.now()) {
+      revokeToken();
     }
 
     const fetchProfile = async () => {
@@ -61,8 +72,6 @@ export const Profile: React.FC = () => {
   }, []);
 
   const handleClick = () => {
-    console.log("revoking");
-
     revokeToken();
     navigate("/");
   };

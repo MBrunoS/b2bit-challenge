@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../Button";
 import { Container } from "./styles";
 
 type TopBarProps = {
@@ -8,7 +9,7 @@ type TopBarProps = {
 const TopBar: React.FC<TopBarProps> = ({ handleClick }) => {
   return (
     <Container>
-      <button onClick={handleClick}>Logout</button>
+      <Button onClick={handleClick}>Logout</Button>
     </Container>
   );
 };
