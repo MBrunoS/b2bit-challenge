@@ -1,8 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 
 type AuthContextType = {
   token: string | null;
   setToken: (token: string) => void;
+  revokeToken: () => void;
 };
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -21,15 +22,20 @@ type AuthContextProviderProps = {
 };
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  // const token = localStorage.getItem("auth-token");
-  const token = "";
+  const [token, _setToken] = useState(localStorage.getItem("auth-token"));
 
   const setToken = (token: string) => {
     localStorage.setItem("auth-token", token);
+    _setToken(token);
+  };
+
+  const revokeToken = () => {
+    localStorage.removeItem("auth-token");
+    _setToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider value={{ token, setToken, revokeToken }}>
       {children}
     </AuthContext.Provider>
   );

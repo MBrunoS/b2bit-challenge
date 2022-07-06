@@ -1,9 +1,10 @@
 import axios, { AxiosError } from "axios";
 import { Formik, ErrorMessage, Field } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
-import FormControl from "../FormControl";
-import { Button, ErrorBox, Form } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
+import { ErrorBox, Form, FormControl } from "./styles";
 
 type Values = {
   email: string;
@@ -13,6 +14,15 @@ type Values = {
 type ApiError = { detail: string };
 
 export const LoginForm: React.FC = () => {
+  const { token, setToken } = useAuthContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token !== null) {
+      navigate("/profile");
+    }
+  }, [token]);
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -42,6 +52,7 @@ export const LoginForm: React.FC = () => {
               password: values.password,
             }
           );
+          setToken(data.tokens.access);
         } catch (error) {
           if (axios.isAxiosError(error)) {
             const msg = (error as AxiosError).response?.data as ApiError;
@@ -90,9 +101,9 @@ export const LoginForm: React.FC = () => {
             )}{" "}
           </FormControl>
 
-          <Button type="submit" disabled={formik.isSubmitting}>
+          <button type="submit" disabled={formik.isSubmitting}>
             Sign In
-          </Button>
+          </button>
         </Form>
       )}
     </Formik>
