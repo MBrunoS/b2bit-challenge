@@ -1,26 +1,26 @@
-# Projeto B2BIT
+# B2BIT Challenge
 
-Este projeto foi desenvolvido para solucionar o desafio proposto pela B2BIT
+This project was developed to solve the challenge proposed by B2BIT
 
-## Tecnologias utilizadas
+## Technologies used
 
 - Vite
 - React
 - Styled Components
 - Typescript
 
-## Como executar
+## How to run
 
-Assumindo que o código já está baixado no seu computador, dentro da pasta do projeto execute o comando:
+Assuming the code is already downloaded on your computer, inside the project folder run the following command:
 
 ```
 yarn
 ```
 
-Feito isso, todas as dependências serão instaladas, e então para testar a aplicação, execute:
+After this, run:
 
 ```
 yarn dev
 ```
 
-Rapidamente você poderá testar no seu navegador em `localhost:3000`
+With this, you'll be able to see the dev server running at `localhost:3000`
